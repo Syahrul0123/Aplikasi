@@ -1,8 +1,8 @@
 <?php
 include 'koneksi.php';
  
-// header("Content-type: application/vnd.ms-word");
-// header("Content-Disposition: attachment;Filename=data-transaksi.doc");
+header("Content-type: application/vnd.ms-word");
+header("Content-Disposition: attachment;Filename=data-transaksi.doc");
 function format_rupiah($angka){
     $rupiah = "Rp " . number_format($angka,0,',','.');
     return $rupiah;
