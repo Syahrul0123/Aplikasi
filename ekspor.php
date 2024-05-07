@@ -1,14 +1,22 @@
 <?php
 include 'koneksi.php';
  
-header("Content-type: application/vnd.ms-word");
-header("Content-Disposition: attachment;Filename=data-transaksi.doc");
+header("Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+header("Content-Disposition: attachment;Filename=data-transaksi.xlsx");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Kwitansi Pembayaran SPP SMK Mahardhika</title>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
 </head>
 
 <body>
@@ -98,7 +106,7 @@ header("Content-Disposition: attachment;Filename=data-transaksi.doc");
 		  <td><?php echo $data['nama']; ?></td>
 		  <td><?= $kelasnow; ?> - <?= $data['nama_kelas']; ?></td>
 		  <td><?php echo $data['tgl_bayar']; ?></td>
-		  <td><?php if($data['bulan_dibayar']==1){ echo "Januari"; }else if($data['bulan_dibayar']==2){ echo "Februari"; }else if($data['bulan_dibayar']==3){ echo "Maret"; }else if($data['bulan_dibayar']==4){ echo "April"; }else if($data['bulan_dibayar']==5){ echo "Mei"; }else if($data['bulan_dibayar']==6){ echo "Juni"; }else if($data['bulan_dibayar']==7){ echo "Juli"; } else if($data['bulan_dibayar']==8){ echo "Agustus"; }else if($data['bulan_dibayar']==9){ echo "September"; }else if($data['bulan_dibayar']==10){ echo "Oktober"; }else if($data['bulan_dibayar']==11){ echo "November"; }else if($data['bulan_dibayar']==12){ echo "Desember"; }?></td>
+		  <td><?php echo $data['bulan_dibayar']?></td>
 		  <td><?php echo $data['tahun_dibayar']; ?></td>
 		  <td><?php echo $data['nama_petugas']; ?></td>
          
