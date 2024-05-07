@@ -1,8 +1,8 @@
 <?php
 include 'koneksi.php';
  
-header("Content-type: application/vnd.ms-word");
-header("Content-Disposition: attachment;Filename=data-transaksi.doc");
+// header("Content-type: application/vnd.ms-word");
+// header("Content-Disposition: attachment;Filename=data-transaksi.doc");
 function format_rupiah($angka){
     $rupiah = "Rp " . number_format($angka,0,',','.');
     return $rupiah;
@@ -47,7 +47,6 @@ function format_rupiah($angka){
   if (isset($_POST['daritanggal'])) {
     $daritanggal = ($_POST['daritanggal']);
  $sampaitanggal = ($_POST['sampaitanggal']);
- 
  ?>
 <p align="center">DATA TRANSAKSI PEMBAYARAN SPP </p>
 <p align="center">SMK MAHARDHIKA</p>
@@ -74,6 +73,7 @@ function format_rupiah($angka){
       die ("Query Error: ".mysqli_errno($koneksi).
          " - ".mysqli_error($koneksi));
     }
+	$total_amount = 0;
    $no=1;
 	  while ($data = mysqli_fetch_assoc($result)){
    $tahunsekarang=date('Y');
@@ -119,7 +119,6 @@ function format_rupiah($angka){
 	  
 	  }
   ?>
-	
        <tr>
           <td align="center"><?php echo $no; ?></td>
           <td align="center"><?php echo $data['nisn']; ?></td>
@@ -131,12 +130,16 @@ function format_rupiah($angka){
 		  <td align="center"><?php echo $data['nama_petugas']; ?></td>
 		  <td align="center"><?php echo format_rupiah($data['jumlah_bayar']); ?></td>
       </tr>
-         
       <?php
-        $no++; 
+	  $total_amount += $data['jumlah_bayar'];
+	  $no++; 
       }
 	  }
       ?>
+	<tr>
+    <td colspan='8' align='right'><strong>Total:</strong></td>
+    <td align='center'><strong><?php echo format_rupiah($total_amount) ?></strong></td>
+    </tr>
     </tbody>
     </table>
 </div>
