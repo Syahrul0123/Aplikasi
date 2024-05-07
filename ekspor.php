@@ -1,8 +1,8 @@
 <?php
 include 'koneksi.php';
  
-header("Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-header("Content-Disposition: attachment;Filename=data-transaksi.xlsx");
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment;Filename=data-transaksi.xls");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -15,6 +15,16 @@ header("Content-Disposition: attachment;Filename=data-transaksi.xlsx");
     }
     table, th, td {
         border: 1px solid black;
+    }
+
+	th.number {
+        width: 80px; /* Adjust width for number */
+    }
+    th.nisn {
+        width: 200px; /* Adjust width for name */
+    }
+    th.address {
+        width: 1300px; /* Adjust width for address */
     }
 </style>
 </head>
@@ -35,9 +45,9 @@ header("Content-Disposition: attachment;Filename=data-transaksi.xlsx");
   <table>
       <thead>
         <tr>
-          <th>No</th>
-          <th>NISN</th>
-          <th>Nama</th>
+          <th class="number">No</th>
+          <th class="nisn">NISN</th>
+          <th calss="address">Nama</th>	
 		  <th>Kelas</th>
 		    <th>Tanggal Bayar</th>
 			  <th>Bulan Dibayar</th>
