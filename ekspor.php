@@ -1,15 +1,27 @@
 <?php
 include 'koneksi.php';
  
-header("Content-type: application/vnd.ms-excel");
-header("Content-Disposition: attachment;Filename=data-transaksi.xls");
+header("Content-type: application/vnd.ms-word");
+header("Content-Disposition: attachment;Filename=data-transaksi.doc");
+function format_rupiah($angka){
+    $rupiah = "Rp " . number_format($angka,0,',','.');
+    return $rupiah;
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> -->
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
 <title>Kwitansi Pembayaran SPP SMK Mahardhika</title>
 <style>
+	 @page Section1 {size:595.45pt 841.7pt; margin:1.0in 1.25in 1.0in 1.25in;mso-header-margin:.5in;mso-footer-margin:.5in;mso-paper-source:0;}
+	div.Section1 {page:Section1;}
+	@page Section2 {size:841.7pt 595.45pt;mso-page-orientation:landscape;margin:1.25in 1.0in 1.25in 1.0in;mso-header-margin:.5in;mso-footer-margin:.5in;mso-paper-source:0;}
+	div.Section2 {page:Section2;}
     table {
         border-collapse: collapse;
     }
@@ -21,15 +33,16 @@ header("Content-Disposition: attachment;Filename=data-transaksi.xls");
         width: 80px; /* Adjust width for number */
     }
     th.nisn {
-        width: 200px; /* Adjust width for name */
+        width: 100px; /* Adjust width for name */
     }
     th.address {
-        width: 1300px; /* Adjust width for address */
+        width: 300px; /* Adjust width for address */
     }
 </style>
 </head>
 
 <body>
+<div class=Section2>
  <?php
   if (isset($_POST['daritanggal'])) {
     $daritanggal = ($_POST['daritanggal']);
@@ -39,11 +52,8 @@ header("Content-Disposition: attachment;Filename=data-transaksi.xls");
 <p align="center">DATA TRANSAKSI PEMBAYARAN SPP </p>
 <p align="center">SMK MAHARDHIKA</p>
 <p align="center">DARI TANGGAL <?php echo $daritanggal;?> SAMPAI TANGGAL <?php echo $sampaitanggal;?></p>
-<p>&nbsp;</p>
-
-
   <table>
-      <thead>
+      <thead style='background-color: #D1C4E9;'>
         <tr>
           <th class="number">No</th>
           <th class="nisn">NISN</th>
@@ -52,7 +62,8 @@ header("Content-Disposition: attachment;Filename=data-transaksi.xls");
 		    <th>Tanggal Bayar</th>
 			  <th>Bulan Dibayar</th>
             <th>Tahun Dibayar</th>
-			<th>Petugas</th>
+			<th class="nisn">Petugas</th>
+			<th>Jumlah Bayar</th>
           
     </thead>
     <tbody>
@@ -106,21 +117,19 @@ header("Content-Disposition: attachment;Filename=data-transaksi.xls");
 	 
 	  $kelasnow="alumni";
 	  
-	  }   
-	  
+	  }
   ?>
 	
        <tr>
-          <td><?php echo $no; ?></td>
-          <td><?php echo $data['nisn']; ?></td>
-		  <td><?php echo $data['nama']; ?></td>
-		  <td><?= $kelasnow; ?> - <?= $data['nama_kelas']; ?></td>
-		  <td><?php echo $data['tgl_bayar']; ?></td>
-		  <td><?php echo $data['bulan_dibayar']?></td>
-		  <td><?php echo $data['tahun_dibayar']; ?></td>
-		  <td><?php echo $data['nama_petugas']; ?></td>
-         
-          
+          <td align="center"><?php echo $no; ?></td>
+          <td align="center"><?php echo $data['nisn']; ?></td>
+		  <td align="center"><?php echo $data['nama']; ?></td>
+		  <td align="center"><?= $kelasnow; ?> - <?= $data['nama_kelas']; ?></td>
+		  <td align="center"><?php echo $data['tgl_bayar']; ?></td>
+		  <td align="center"><?php echo $data['bulan_dibayar']?></td>
+		  <td align="center"><?php echo $data['tahun_dibayar']; ?></td>
+		  <td align="center"><?php echo $data['nama_petugas']; ?></td>
+		  <td align="center"><?php echo format_rupiah($data['jumlah_bayar']); ?></td>
       </tr>
          
       <?php
@@ -130,5 +139,6 @@ header("Content-Disposition: attachment;Filename=data-transaksi.xls");
       ?>
     </tbody>
     </table>
+</div>
 </body>
 </html>
