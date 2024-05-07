@@ -30,7 +30,7 @@ function format_rupiah($angka){
     }
 
 	th.number {
-        width: 80px; /* Adjust width for number */
+        width: 50px; /* Adjust width for number */
     }
     th.nisn {
         width: 100px; /* Adjust width for name */
