@@ -38,6 +38,12 @@ function format_rupiah($angka){
     th.address {
         width: 300px; /* Adjust width for address */
     }
+	td {
+  height: 30px;
+}
+th {
+  height: 50px;
+}
 </style>
 </head>
 
