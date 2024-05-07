@@ -28,15 +28,14 @@ function format_rupiah($angka){
     table, th, td {
         border: 1px solid black;
     }
-
-	th.number {
-        width: 50px; /* Adjust width for number */
-    }
     th.nisn {
         width: 100px; /* Adjust width for name */
     }
     th.address {
-        width: 300px; /* Adjust width for address */
+        width: 200px; /* Adjust width for address */
+    }
+	th.kelas {
+        width: 120px; /* Adjust width for name */
     }
 	td {
   height: 30px;
@@ -60,10 +59,10 @@ th {
   <table>
       <thead style='background-color: #D1C4E9;'>
         <tr>
-          <th class="number">No</th>
+          <th>No</th>
           <th class="nisn">NISN</th>
-          <th calss="address">Nama</th>	
-		  <th>Kelas</th>
+          <th class="address">Nama</th>
+		  <th class="kelas">Kelas</th>
 		    <th>Tanggal Bayar</th>
 			  <th>Bulan Dibayar</th>
             <th>Tahun Dibayar</th>
