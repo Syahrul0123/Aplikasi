@@ -152,7 +152,6 @@ include('tampilan/footer.php');
         </div>
       </div>
     </div>
-
   </section>
 </div>
 </div>
