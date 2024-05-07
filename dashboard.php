@@ -3,6 +3,40 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
 include('tampilan/header.php');
 include('tampilan/sidebar.php');
 include('tampilan/footer.php');
+// jalankan query untuk menampilkan semua data diurutkan berdasarkan id
+$query_santri = "SELECT * FROM siswa"; // Query for students
+$query_petugas = "SELECT * FROM petugas"; // Query for petugas members
+$result_santri = mysqli_query($koneksi, $query_santri);
+$result_petugas = mysqli_query($koneksi, $query_petugas);
+
+// Check for errors in query execution
+if (!$result_santri || !$result_petugas) {
+  die("Query Error: " . mysqli_errno($koneksi) . " - " . mysqli_error($koneksi));
+}
+
+// Initialize counters
+$count_santriwan = 0;
+$count_santriwati = 0;
+$count_petugas = 0;
+
+// Count students
+while ($row = mysqli_fetch_assoc($result_santri)) {
+  // Assuming 'jenis_kelamin' is the column for gender in the 'siswa' table
+  if ($row['jenis_kelamin'] == 'L') { // Assuming 'L' denotes male
+    $count_santriwan++;
+  } elseif ($row['jenis_kelamin'] == 'P') { // Assuming 'P' denotes female
+    $count_santriwati++;
+  }
+}
+
+// Count petugas members
+while ($row = mysqli_fetch_assoc($result_petugas)) {
+  // Adjust the condition according to the actual column name for gender in the 'petugas' table
+  // Assuming 'jenis_kelamin' is the column for gender in the 'petugas' table
+  // If the column name or values are different, adjust accordingly
+  $count_petugas++;
+}
+
 ?>
 <!-- Main Content -->
 <div class="main-content bg-primary">
@@ -11,14 +45,14 @@ include('tampilan/footer.php');
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
           <div class="card-icon bg-primary">
-            <i class="far fa-user"></i>
+            <i class="fas fa-male fa-5x"></i>
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>Total Admin</h4>
+              <h4>SANTRIWAN</h4>
             </div>
             <div class="card-body">
-              10
+              <?php echo $count_santriwan; ?>
             </div>
           </div>
         </div>
@@ -26,14 +60,14 @@ include('tampilan/footer.php');
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
           <div class="card-icon bg-danger">
-            <i class="far fa-newspaper"></i>
+            <i class="fas fa-female fa-xl"></i>
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>News</h4>
+              <h4>SANTRIWATI</h4>
             </div>
             <div class="card-body">
-              42
+              <?php echo $count_santriwati; ?>
             </div>
           </div>
         </div>
@@ -41,11 +75,11 @@ include('tampilan/footer.php');
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
           <div class="card-icon bg-warning">
-            <i class="far fa-file"></i>
+            <i class="fas fa-chalkboard-teacher"></i>
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>Reports</h4>
+              <h4>GURU</h4>
             </div>
             <div class="card-body">
               1,201
@@ -56,14 +90,14 @@ include('tampilan/footer.php');
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
           <div class="card-icon bg-success">
-            <i class="fas fa-circle"></i>
+            <i class="fas fa-users"></i>
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>Online Users</h4>
+              <h4>PETUGAS</h4>
             </div>
             <div class="card-body">
-              47
+              <?php echo $count_petugas; ?>
             </div>
           </div>
         </div>
@@ -152,6 +186,7 @@ include('tampilan/footer.php');
         </div>
       </div>
     </div>
+
   </section>
 </div>
 </div>
