@@ -16,6 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `guru`
+--
+
+DROP TABLE IF EXISTS `guru`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `guru` (
+  `id_guru` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(30) NOT NULL,
+  `foto` varchar(45) NOT NULL,
+  `isi` tinytext NOT NULL,
+  `tgl_isi` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_guru`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `guru`
+--
+
+LOCK TABLES `guru` WRITE;
+/*!40000 ALTER TABLE `guru` DISABLE KEYS */;
+INSERT INTO `guru` VALUES (1,'EKA','123456','JADKSAKJHASD','2021-04-02 22:20:53');
+/*!40000 ALTER TABLE `guru` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `kelas`
 --
 
@@ -27,7 +54,7 @@ CREATE TABLE `kelas` (
   `nama_kelas` varchar(10) NOT NULL,
   `kompetensi_keahlian` varchar(50) NOT NULL,
   PRIMARY KEY (`id_kelas`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +90,7 @@ CREATE TABLE `pembayaran` (
   CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`id_petugas`) REFERENCES `petugas` (`id_petugas`),
   CONSTRAINT `pembayaran_ibfk_2` FOREIGN KEY (`nisn`) REFERENCES `siswa` (`nisn`),
   CONSTRAINT `pembayaran_ibfk_3` FOREIGN KEY (`id_spp`) REFERENCES `siswa` (`id_spp`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +99,7 @@ CREATE TABLE `pembayaran` (
 
 LOCK TABLES `pembayaran` WRITE;
 /*!40000 ALTER TABLE `pembayaran` DISABLE KEYS */;
-INSERT INTO `pembayaran` VALUES (2,2,'2020112233','2021-03-30','maret','2019',3,300000);
+INSERT INTO `pembayaran` VALUES (2,2,'2020112233','2021-03-30','maret','2019',3,300000),(3,1,'2020112233','2021-03-30','juni','2019',3,200000),(4,1,'2020112233','2022-03-30','maret','2022',3,400000);
 /*!40000 ALTER TABLE `pembayaran` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +117,7 @@ CREATE TABLE `petugas` (
   `nama_petugas` varchar(35) NOT NULL,
   `level` enum('admin','petugas','siswa') NOT NULL,
   PRIMARY KEY (`id_petugas`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,7 +176,7 @@ CREATE TABLE `spp` (
   `tahun` int(11) NOT NULL,
   `nominal` int(11) NOT NULL,
   PRIMARY KEY (`id_spp`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,4 +198,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-07 22:44:27
+-- Dump completed on 2024-05-09  0:25:53
