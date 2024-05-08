@@ -146,6 +146,21 @@ while ($row = mysqli_fetch_assoc($result_guru)) {
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
 <script>
+  function formatRupiah(amount) {
+    // Convert the amount to a string
+    amount = amount.toString();
+
+    // Split the amount into whole and decimal parts
+    var parts = amount.split('.');
+    var wholePart = parts[0];
+    var decimalPart = parts.length > 1 ? '.' + parts[1] : '';
+
+    // Add separators for thousands
+    wholePart = wholePart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+    // Return the formatted amount with the currency symbol
+    return 'Rp ' + wholePart + decimalPart;
+  }
   // Initialize start year picker
   $("#startYearPicker").datepicker({
     format: "yyyy",
@@ -188,7 +203,7 @@ while ($row = mysqli_fetch_assoc($result_guru)) {
             "<tr>" +
             "<td>" + rowNum + "</td>" +
             "<td>" + row.tahun_dibayar + "</td>" +
-            "<td>" + row.total_jumlah_bayar + "</td>" +
+            "<td>" + formatRupiah(row.total_jumlah_bayar) + "</td>" +
             "</tr>"
           );
 
