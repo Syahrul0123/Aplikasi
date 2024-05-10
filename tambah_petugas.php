@@ -26,57 +26,28 @@
             </div>
           </div>
           <div class="row">
-              <div class="col-12">
-                <div class="card">
-                  </div>
-                  <div class="card-body bg-primary">
-                    <div class="row mt-4">
-                      <div class="col-12 col-lg-8 offset-lg-2">
-                        <div class="wizard-steps">
-                          <div class="wizard-step wizard-step-active">
-                            <div class="wizard-step-icon">
-                              <i class="fas fa-school"></i>
-                            </div>
-                            <div class="wizard-step-label">
-                              Isi Formulir pengguna
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <form class="wizard-content mt-2" method="post" action="proses_tambahsiswa.php">
+                    <div class="section-title mt-0">DATA SANTRI</div>
+                    <div class="form-row">
+                    <div class="form-group row col-md-6">
+                      <input type="text" name="id_petugas" class="form-control" placeholder="ID Petugas">
                     </div>
-
-                    <form class="wizard-content mt-2" method="post" action="proses_tambahpetugas.php">
-                      <div class="wizard-pane">
-                        <div class="form-group row align-items-center">
-                          <label class="col-md-4 text-md-right text-white">ID PENGGUNA</label>
-                          <div class="col-lg-4 col-md-6">
-                            <input type="text" name="id_petugas" class="form-control">
-                          </div>
-                        </div>
-                        <div class="form-group row align-items-center">
-                          <label class="col-md-4 text-md-right text-white">USERNAME</label>
-                          <div class="col-lg-4 col-md-6">
-                            <input type="text" name="username" class="form-control">
-                          </div>
-                        </div>
-                        <div class="form-group row align-items-center">
-                          <label class="col-md-4 text-md-right text-white">PASSWORD</label>
-                          <div class="col-lg-4 col-md-6">
-                            <input type="text" name="password" class="form-control">
-                          </div>
-                        </div>
-                        <div class="form-group row align-items-center">
-                          <label class="col-md-4 text-md-right text-white">NAMA PENGGUNA</label>
-                          <div class="col-lg-4 col-md-6">
-                            <input type="text" name="nama_petugas" class="form-control">
-                          </div>
-                        </div>
-                        <div class="form-group row align-items-center">
-                          <label class="col-md-4 text-md-right text-white">LEVEL</label>
-                          <div class="col-lg-4 col-md-6">
-                            <select type="text" name="level" class="form-control">
-                            <option value="not_option"> silahkan pilih level</option>
-                              <?php
+                    <div class="form-group row col-md-6">
+                      <input type="text" name="username" class="form-control" placeholder="User Name">
+                    </div>
+                    <div class="form-group row col-md-6">
+                      <input type="text" name="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group row col-md-6">
+                      <input type="text" name="nama_petugas" class="form-control" placeholder="Nama Pengguna">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <select class="form-control" name="level">
+                          <option value="not_option">Level</option>
+                          <?php
                                   // jalankan query untuk menampilkan semua data diurutkan berdasarkan
                                   $query = "SELECT * FROM petugas ORDER BY level ASC";
                                   $result = mysqli_query($koneksi, $query);

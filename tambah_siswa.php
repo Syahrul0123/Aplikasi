@@ -34,7 +34,7 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
               <form class="wizard-content mt-2" method="post" action="proses_tambahsiswa.php">
                 <div class="section-title mt-0">DATA SANTRI</div>
                 <div class="form-row">
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-12">
                     <input type="text" name="nama" class="form-control" placeholder="Nama">
                   </div>
                   <div class="form-group col-md-6">
@@ -111,13 +111,47 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                     </select>
                   </div>
                 </div>
-                <div class="section-title mt-0">DATA ORANG TUA</div>
+                <div class="section-title mt-0">DATA ORANG TUA / WALI SANTRI</div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <input type="text" name="nama" class="form-control" placeholder="Nama">
+                    <input type="text" name="nama" class="form-control" placeholder="Nama Orang Tua / Wali">
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" name="nisn" class="form-control" placeholder="NISN">
+                    <input type="text" name="agama" class="form-control" placeholder="Agama">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text" name="pendidikan_terakhir" class="form-control" placeholder="Pendidikan Terakhir">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text" name="pekerjaan" class="form-control" placeholder="Pekerjaan">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text" name="no_telpon" class="form-control" placeholder="No. Telpon">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text" name="pendapatan_orangtua" class="form-control" placeholder="Pendapatan Perbulan">
+                  </div>
+                </div>
+                <div class="section-title mt-0">PENDIDIKAN SEBELUMNYA</div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <input type="text" name="asal_sekolah" class="form-control" placeholder="Dari Sekolah">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text" name="tahun_lulus" class="form-control" placeholder="Tahun Lulus">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text" name="kelas_sebelumnya" class="form-control" placeholder="Kelas Sebelumnya">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text" name="no_ijzah" class="form-control" placeholder="No Ijazah">
+                  </div>
+                </div>
+                <div class="section-title mt-0">DOKUMEN PENDUKUNG</div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label>Akta Kelahiran, KK, EKTP, Ijazah, NISN</label>
+                    <input type="file" name="dokumen_pendukung" class="form-control" placeholder="Akta Kelahiran, KK, EKTP, Ijazah, NISN">
                   </div>
                 </div>
             </div>
