@@ -154,9 +154,12 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                     <input type="file" name="dokumen_pendukung" class="form-control" placeholder="Akta Kelahiran, KK, EKTP, Ijazah, NISN">
                   </div>
                 </div>
+                <div class="text-right">
+                  <button type="submit" class="btn btn-success">Submit</button>
+                </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-success">Submit</button>
+
           </form>
         </div>
       </div>
