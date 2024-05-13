@@ -84,7 +84,7 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                     <input type="text" name="tempat_tgl_lahir" class="form-control" placeholder="Tempat tanggal lahir">
                   </div>
                   <div class="form-group col-md-6">
-                    <input class="form-control" type="text" id="yearPicker" value="Silahkan Pilih Tahun Masuk"> </input>
+                    <input class="form-control" name='tahun' type="text" id="yearPicker" value="Silahkan Pilih Tahun Masuk"> </input>
                   </div>
                 </div>
                 <div class="section-title mt-0">DATA ORANG TUA / WALI SANTRI</div>
@@ -127,7 +127,7 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                 <div class="form-row">
                   <div class="form-group col-md-12">
                     <label>Akta Kelahiran, KK, EKTP, Ijazah, NISN</label>
-                    <input type="file" name="dokumen" class="form-control" placeholder="Akta Kelahiran, KK, EKTP, Ijazah, NISN">
+                    <input type="text" name="dokumen" class="form-control" placeholder="Akta Kelahiran, KK, EKTP, Ijazah, NISN">
                   </div>
                 </div>
                 <div class="text-right">

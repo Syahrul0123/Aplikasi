@@ -62,7 +62,8 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                     <tbody>
                       <?php
                       // jalankan query untuk menampilkan semua data diurutkan berdasarkan id
-                      $query = "SELECT * FROM siswa,kelas,spp where siswa.id_kelas=kelas.id_kelas AND siswa.id_spp=spp.id_spp ORDER BY nisn ASC";
+                      // $query = "SELECT * FROM siswa,kelas,spp where siswa.id_kelas=kelas.id_kelas AND siswa.id_spp=spp.id_spp ORDER BY nisn ASC";
+                      $query = "SELECT * FROM siswa,kelas where siswa.id_kelas=kelas.id_kelas ORDER BY nisn ASC";
                       $result = mysqli_query($koneksi, $query);
                       //mengecek apakah ada error ketika menjalankan query
                       if (!$result) {
@@ -85,7 +86,7 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                           <td><?php echo $row['alamat']; ?></td>
                           <td><?php echo $row['no_telp']; ?></td>
                           <td><?php echo $row['jenis_kelamin']; ?></td>
-                          <td><?php echo substr($row['id_spp'], 0, 20); ?></td>
+                          <td><?php echo $row['nama_wali']; ?></td>
                           <td>
                             <a href="edit_siswa.php?id=<?php echo $row['nisn']; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                             <a href="proses_hapussiswa.php?id=<?php echo $row['nisn']; ?>" class="btn btn-danger" onClick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>

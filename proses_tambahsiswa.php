@@ -3,14 +3,14 @@
 include 'koneksi.php';
 
 // membuat variabel untuk menampung data dari form
-$nama             = $_POST['nama'];
 $nisn             = $_POST['nisn'];
 $nis              = $_POST['nis'];
+$nama             = $_POST['nama'];
 $id_kelas         = $_POST['id_kelas'];
 $alamat           = $_POST['alamat'];
 $jenis_kelamin    = $_POST['jenis_kelamin'];
 $tempat_tgl_lahir = $_POST['tempat_tgl_lahir'];
-$tahun              = $_POST['tahun'];
+$tahun            = $_POST['tahun'];
 
 //data wali murid
 $nama_wali        = $_POST['nama_wali'];
@@ -28,7 +28,9 @@ $no_ijzah           = $_POST['no_ijzah'];
 $dokumen            = $_POST['dokumen'];
 
 
-$query = "INSERT INTO siswa VALUES ('$nisn', '$nis','$nama', '$id_kelas', '$alamat', '$tahun')";
+$query = "INSERT INTO siswa VALUES ('$nisn', '$nis','$nama', '$id_kelas', '$alamat','$jenis_kelamin','$tempat_tgl_lahir',
+         '$tahun','$nama_wali','$agama','$pend_terakhir','$pekerjaan','$no_telp','$pendapatan','$asal_sekolah',
+         '$tahun_lulus','$kelas_sebelumnya','$no_ijzah','$dokumen')";
 $result = mysqli_query($koneksi, $query);
 // periska query apakah ada error
 if (!$result) {

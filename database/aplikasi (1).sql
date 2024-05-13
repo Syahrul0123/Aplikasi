@@ -76,7 +76,6 @@ CREATE TABLE `pembayaran` (
   `tgl_bayar` date NOT NULL,
   `bulan_dibayar` varchar(8) NOT NULL,
   `tahun_dibayar` varchar(4) NOT NULL,
-  `id_spp` int(11) NOT NULL,
   `jumlah_bayar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -84,12 +83,12 @@ CREATE TABLE `pembayaran` (
 -- Dumping data for table `pembayaran`
 --
 
-INSERT INTO `pembayaran` (`id_pembayaran`, `id_petugas`, `nisn`, `tgl_bayar`, `bulan_dibayar`, `tahun_dibayar`, `id_spp`, `jumlah_bayar`) VALUES
-(2, 2, '2020112233', '2021-03-30', 'maret', '2019', 3, 300000),
-(3, 1, '2020112233', '2021-03-30', 'juni', '2019', 3, 200000),
-(4, 1, '2020112233', '2022-03-30', 'maret', '2022', 3, 400000),
-(5, 1, '2020112233', '2024-05-09', 'mei', '2019', 3, 500000),
-(6, 1, '2020112233', '2024-05-13', 'januari', '2019', 3, 500000);
+INSERT INTO `pembayaran` (`id_pembayaran`, `id_petugas`, `nisn`, `tgl_bayar`, `bulan_dibayar`, `tahun_dibayar`, `jumlah_bayar`) VALUES
+(2, 2, '2020112233', '2021-03-30', 'maret', '2019', 300000),
+(3, 1, '2020112233', '2021-03-30', 'juni', '2019', 200000),
+(4, 1, '2020112233', '2022-03-30', 'maret', '2022', 400000),
+(5, 1, '2020112233', '2024-05-09', 'mei', '2019', 500000),
+(6, 1, '2020112233', '2024-05-13', 'januari', '2019', 500000);
 
 -- --------------------------------------------------------
 
@@ -165,8 +164,7 @@ ALTER TABLE `kelas`
 ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`id_pembayaran`),
   ADD KEY `id_petugas` (`id_petugas`),
-  ADD KEY `nisn` (`nisn`),
-  ADD KEY `id_spp` (`id_spp`);
+  ADD KEY `nisn` (`nisn`)
 
 --
 -- Indexes for table `petugas`
@@ -218,7 +216,6 @@ ALTER TABLE `petugas`
 ALTER TABLE `pembayaran`
   ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`id_petugas`) REFERENCES `petugas` (`id_petugas`),
   ADD CONSTRAINT `pembayaran_ibfk_2` FOREIGN KEY (`nisn`) REFERENCES `siswa` (`nisn`),
-  ADD CONSTRAINT `pembayaran_ibfk_3` FOREIGN KEY (`id_spp`) REFERENCES `siswa` (`id_spp`);
 
 --
 -- Constraints for table `siswa`
