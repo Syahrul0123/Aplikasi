@@ -33,6 +33,7 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
             <div class="card-body">
               <form class="wizard-content mt-2" method="post" action="proses_tambahsiswa.php">
                 <div class="section-title mt-0">DATA SANTRI</div>
+                <div class="form-row">
                 <div class="form-group  col-md-12">
                   <input type="text" name="id_petugas" class="form-control" placeholder="ID Petugas">
                 </div>
@@ -70,6 +71,7 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                     }
                     ?>
                   </select>
+                </div>
                 </div>
                 <div class="mr-2 text-right">
 

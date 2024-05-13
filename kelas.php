@@ -25,7 +25,7 @@
           <div class="section-header">
             <h1>DATA KELAS</h1>
             <div class="section-header-breadcrumb">
-              <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+              <div class="breadcrumb-item active"><a href="dashboard.php">Dashboard</a></div>
               <div class="breadcrumb-item text-primary">Data kelas</div>
             </div>
           </div>
