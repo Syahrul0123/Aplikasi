@@ -6,7 +6,7 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
 <html>
 
 <head>
-  <title></title>
+  <title>DATA SISWA</title>
 
 </head>
 
