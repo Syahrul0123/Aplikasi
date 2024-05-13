@@ -6,6 +6,7 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
 <html>
 
 <head>
+
   <title>Tambah Siswa</title>
 
 </head>
@@ -83,27 +84,7 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                     <input type="text" name="tempat_tgl_lahir" class="form-control" placeholder="Tempat tanggal lahir">
                   </div>
                   <div class="form-group col-md-6">
-                    <select class="form-control" name="tahun">
-                      <option value="not_option"> silahkan pilih tahun masuk</option>
-                      <?php
-                      // jalankan query untuk menampilkan semua data diurutkan berdasarkan
-                      $query = "SELECT * FROM spp ORDER BY tahun ASC";
-                      $result = mysqli_query($koneksi, $query);
-                      //mengecek apakah ada error ketika menjalankan query
-                      if (!$result) {
-                        die("Query Error: " . mysqli_errno($koneksi) .
-                          " - " . mysqli_error($koneksi));
-                      }
-
-                      $no = 1; //variabel untuk membuat nomor urut
-                      while ($row = mysqli_fetch_assoc($result)) {
-                      ?>
-                        <option value="<?php echo $row['id_spp']; ?>"><?php echo $row['tahun']; ?></option>
-                      <?php
-                        $no++; //untuk nomor urut terus bertambah 1
-                      }
-                      ?>
-                    </select>
+                    <input class="form-control" type="text" id="yearPicker" value="silahkan pilih tahun masuk"> </input>
                   </div>
                 </div>
                 <div class="section-title mt-0">DATA ORANG TUA / WALI SANTRI</div>
@@ -161,3 +142,14 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
     </section>
   </div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#yearPicker').datepicker({
+      format: "yyyy",
+      viewMode: "years",
+      minViewMode: "years",
+      endDate: "'" + new Date().getFullYear() + "'",
+    });
+  });
+</script>
