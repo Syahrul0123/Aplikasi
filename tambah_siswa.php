@@ -95,7 +95,6 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                           " - " . mysqli_error($koneksi));
                       }
 
-                      //buat perulangan untuk element tabel dari data mahasiswa
                       $no = 1; //variabel untuk membuat nomor urut
                       while ($row = mysqli_fetch_assoc($result)) {
                       ?>
