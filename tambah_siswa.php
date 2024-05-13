@@ -34,7 +34,7 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
               <form class="wizard-content mt-2" method="post" action="proses_tambahsiswa.php">
                 <div class="section-title mt-0">DATA SANTRI</div>
                 <div class="form-row">
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-6">
                     <input type="text" name="nama" class="form-control" placeholder="Nama">
                   </div>
                   <div class="form-group col-md-6">
@@ -58,10 +58,8 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                           " - " . mysqli_error($koneksi));
                       }
 
-                      //buat perulangan untuk element tabel dari data mahasiswa
                       $no = 1; //variabel untuk membuat nomor urut
-                      // hasil query akan disimpan dalam variabel $data dalam bentuk array
-                      // kemudian dicetak dengan perulangan while
+
                       while ($row = mysqli_fetch_assoc($result)) {
                       ?>
                         <option value="<?php echo $row['id_kelas']; ?>"><?php echo $row['nama_kelas']; ?></option>
@@ -114,22 +112,22 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                 <div class="section-title mt-0">DATA ORANG TUA / WALI SANTRI</div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <input type="text" name="nama" class="form-control" placeholder="Nama Orang Tua / Wali">
+                    <input type="text" name="nama_wali" class="form-control" placeholder="Nama Orang Tua / Wali">
                   </div>
                   <div class="form-group col-md-6">
                     <input type="text" name="agama" class="form-control" placeholder="Agama">
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" name="pendidikan_terakhir" class="form-control" placeholder="Pendidikan Terakhir">
+                    <input type="text" name="pend_terakhir" class="form-control" placeholder="Pendidikan Terakhir">
                   </div>
                   <div class="form-group col-md-6">
                     <input type="text" name="pekerjaan" class="form-control" placeholder="Pekerjaan">
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" name="no_telpon" class="form-control" placeholder="No. Telpon">
+                    <input type="text" name="no_telp" class="form-control" placeholder="No. Telpon">
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" name="pendapatan_orangtua" class="form-control" placeholder="Pendapatan Perbulan">
+                    <input type="text" name="pendapatan" class="form-control" placeholder="Pendapatan Perbulan">
                   </div>
                 </div>
                 <div class="section-title mt-0">PENDIDIKAN SEBELUMNYA</div>
@@ -151,7 +149,7 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                 <div class="form-row">
                   <div class="form-group col-md-12">
                     <label>Akta Kelahiran, KK, EKTP, Ijazah, NISN</label>
-                    <input type="file" name="dokumen_pendukung" class="form-control" placeholder="Akta Kelahiran, KK, EKTP, Ijazah, NISN">
+                    <input type="file" name="dokumen" class="form-control" placeholder="Akta Kelahiran, KK, EKTP, Ijazah, NISN">
                   </div>
                 </div>
                 <div class="text-right">
