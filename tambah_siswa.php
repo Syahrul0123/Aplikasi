@@ -97,8 +97,6 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
 
                       //buat perulangan untuk element tabel dari data mahasiswa
                       $no = 1; //variabel untuk membuat nomor urut
-                      // hasil query akan disimpan dalam variabel $data dalam bentuk array
-                      // kemudian dicetak dengan perulangan while
                       while ($row = mysqli_fetch_assoc($result)) {
                       ?>
                         <option value="<?php echo $row['id_spp']; ?>"><?php echo $row['tahun']; ?></option>
