@@ -2,7 +2,7 @@
 include('koneksi.php');
 
 // Set up pagination parameters
-$perPage = 5; // Number of records per page
+$perPage = 10; // Number of records per page
 $page = isset($_GET['page']) ? $_GET['page'] : 1; // Current page number
 
 // Fetch total number of records from the database based on search query
