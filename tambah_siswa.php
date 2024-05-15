@@ -49,18 +49,18 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                 <div class="section-title mt-0">DATA SANTRI</div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <input type="text" name="nama" class="form-control" placeholder="Nama">
+                    <input type="text" name="nama" class="form-control" placeholder="Nama" required>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" name="nisn" class="form-control" placeholder="NISN">
+                    <input type="text" name="nisn" class="form-control" placeholder="NISN" required>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <input type="text" name="nis" class="form-control" placeholder="NIS">
+                    <input type="text" name="nis" class="form-control" placeholder="NIS" required>
                   </div>
                   <div class="form-group col-md-6">
-                    <select class="form-control" name="id_kelas">
+                    <select class="form-control" name="id_kelas" required>
                       <option value="not_option"> Silahkan Pilih ID kelas</option>
                       <?php
                       // jalankan query untuk menampilkan semua data diurutkan berdasarkan
@@ -86,61 +86,75 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <input type="text" name="alamat" class="form-control" placeholder="Alamat">
+                    <input type="text" name="alamat" class="form-control" placeholder="Alamat" required>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" name="jenis_kelamin" class="form-control" placeholder="Jenis Kelamin">
+                    <select name="jenis_kelamin" class="form-control" placeholder="Jenis Kelamin" required>
+                      <option value="">Pilih jenis kelamin</option>
+                      <option value="male">Laki - Laki</option>
+                      <option value="female">Perempuan</option>
+                      <option value="other">Lainnya</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <input type="text" name="tempat_tgl_lahir" class="form-control" placeholder="Tempat tanggal lahir">
+                    <input type="text" name="tempat_tgl_lahir" class="form-control" placeholder="Tempat tanggal lahir" required>
                   </div>
                   <div class="form-group col-md-6">
-                    <input class="form-control" name='tahun' type="text" id="yearPicker" value="Silahkan Pilih Tahun Masuk"> </input>
+                    <input class="form-control yearPicker" name='tahun' type="text" value="Silahkan Pilih Tahun Masuk" required> </input>
                   </div>
                 </div>
                 <div class="section-title mt-0">DATA ORANG TUA / WALI SANTRI</div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <input type="text" name="nama_wali" class="form-control" placeholder="Nama Orang Tua / Wali">
+                    <input type="text" name="nama_wali" class="form-control" placeholder="Nama Orang Tua / Wali" required>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" name="agama" class="form-control" placeholder="Agama">
+                    <select name="agama" class="form-control" placeholder="Agama" required>
+                      <option value="">Pilih Agama</option>
+                      <option value="Islam">Islam</option>
+                      <option value="Kristen">Kristen</option>
+                      <option value="Katolik">Katolik</option>
+                      <option value="Hindu">Hindu</option>
+                      <option value="Buddha">Buddha</option>
+                      <option value="Konghucu">Konghucu</option>
+                      <option value="Lainnya">Lainnya</option>
+                    </select>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" name="pend_terakhir" class="form-control" placeholder="Pendidikan Terakhir">
+                    <input type="text" name="pend_terakhir" class="form-control" placeholder="Pendidikan Terakhir" required>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" name="pekerjaan" class="form-control" placeholder="Pekerjaan">
+                    <input type="text" name="pekerjaan" class="form-control" placeholder="Pekerjaan" required>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" name="no_telp" class="form-control" placeholder="No. Telpon">
+                    <input type="text" name="no_telp" class="form-control" placeholder="No. Telpon" required>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" name="pendapatan" class="form-control" placeholder="Pendapatan Perbulan">
+                    <input type="text" name="pendapatan" class="form-control" placeholder="Pendapatan Perbulan" required>
                   </div>
                 </div>
                 <div class="section-title mt-0">PENDIDIKAN SEBELUMNYA</div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <input type="text" name="asal_sekolah" class="form-control" placeholder="Dari Sekolah">
+                    <input type="text" name="asal_sekolah" class="form-control" placeholder="Dari Sekolah" required>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" name="tahun_lulus" class="form-control" placeholder="Tahun Lulus">
+                    <input class="form-control yearPicker" name="tahun_lulus" type="text" value="Silahkan Pilih Tahun Lulus" required> </input>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" name="kelas_sebelumnya" class="form-control" placeholder="Kelas Sebelumnya">
+                    <input type="text" name="kelas_sebelumnya" class="form-control" placeholder="Kelas Sebelumnya" required>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" name="no_ijzah" class="form-control" placeholder="No Ijazah">
+                    <input type="text" name="no_ijzah" class="form-control" placeholder="No Ijazah" required>
                   </div>
                 </div>
                 <div class="section-title mt-0">DOKUMEN PENDUKUNG</div>
                 <div class="form-row">
                   <div class="form-group col-md-12">
                     <label>Akta Kelahiran, KK, EKTP, Ijazah, NISN</label>
-                    <input type="file" id="fileInput" name="dokumen" class="form-control" placeholder="Akta Kelahiran, KK, EKTP, Ijazah, NISN">
+                    <input type="file" id="fileInput" name="dokumen" class="form-control" placeholder="Akta Kelahiran, KK, EKTP, Ijazah, NISN" required>
                     <div id="progress-container">
                       <div id="progress-bar"></div>
                     </div>
@@ -148,7 +162,7 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                   </div>
                 </div>
                 <div class="text-right">
-                  <button type="submit" class="btn btn-success">Submit</button>
+                  <button type="submit" id='submitBtn' class="btn btn-success" disabled>Submit</button>
                 </div>
             </div>
           </div>
@@ -162,7 +176,7 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script>
   $(document).ready(function() {
-    $('#yearPicker').datepicker({
+    $('.yearPicker').datepicker({
       format: "yyyy",
       viewMode: "years",
       minViewMode: "years",
@@ -200,6 +214,7 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
           $('#fileInput').val('');
           return false;
         }
+        $('#submitBtn').prop('disabled', true);
 
         if (uploadedFilePath) {
           deleteFile(uploadedFilePath);
@@ -235,14 +250,19 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
             if (response.filePath) {
               uploadedFilePath = response.filePath;
               $('#result').html('<p>File uploaded and renamed successfully!');
+              $('#submitBtn').prop('disabled', false);
             } else {
               $('#result').html('<p>Error: ' + response.message + '</p>');
+
             }
             $('#progress-container').hide();
+
+
           },
           error: function(jqXHR, textStatus, errorThrown) {
             $('#result').html('<p>Error: ' + errorThrown + '</p>');
             $('#progress-container').hide();
+            $('#submitBtn').prop('disabled', false);
           }
         });
       }
