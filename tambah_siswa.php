@@ -4,6 +4,19 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
 ?>
 <!DOCTYPE html>
 <html>
+<style>
+  #progress-container {
+    display: none;
+    width: 100%;
+    background-color: #f3f3f3;
+  }
+
+  #progress-bar {
+    width: 0;
+    height: 30px;
+    background-color: #4caf50;
+  }
+</style>
 
 <head>
 
@@ -127,7 +140,11 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                 <div class="form-row">
                   <div class="form-group col-md-12">
                     <label>Akta Kelahiran, KK, EKTP, Ijazah, NISN</label>
-                    <input type="text" name="dokumen" class="form-control" placeholder="Akta Kelahiran, KK, EKTP, Ijazah, NISN">
+                    <input type="file" id="fileInput" name="dokumen" class="form-control" placeholder="Akta Kelahiran, KK, EKTP, Ijazah, NISN">
+                    <div id="progress-container">
+                      <div id="progress-bar"></div>
+                    </div>
+                    <div id="result"></div>
                   </div>
                 </div>
                 <div class="text-right">
@@ -150,6 +167,85 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
       viewMode: "years",
       minViewMode: "years",
       endDate: "'" + new Date().getFullYear() + "'",
+    });
+  });
+
+  let uploadedFilePath = null;
+
+  function deleteFile(filePath) {
+    $.ajax({
+      url: 'fileupload.php',
+      type: 'POST',
+      data: JSON.stringify({
+        action: 'delete',
+        filePath: filePath
+      }),
+      contentType: 'application/json',
+      success: function(response) {
+        console.log('File deleted successfully');
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log('Error deleting file: ' + errorThrown);
+      }
+    });
+  }
+
+  $(document).ready(function() {
+    $('#fileInput').on('change', function() {
+      var file = this.files[0];
+      if (file) {
+        var allowedExtensions = /(\.doc|\.docx|\.pdf)$/i;
+        if (!allowedExtensions.exec(file.name)) {
+          $('#result').html('<p>Error: Invalid file type. Only .doc, .docx, and .pdf files are allowed.</p>');
+          $('#fileInput').val('');
+          return false;
+        }
+
+        if (uploadedFilePath) {
+          deleteFile(uploadedFilePath);
+        }
+
+        var formData = new FormData();
+        formData.append('file', file);
+
+        $.ajax({
+          url: 'fileupload.php',
+          type: 'POST',
+          data: formData,
+          contentType: false,
+          processData: false,
+          xhr: function() {
+            var xhr = new XMLHttpRequest();
+            xhr.upload.addEventListener('progress', function(e) {
+              if (e.lengthComputable) {
+                var percentComplete = (e.loaded / e.total) * 100;
+                $('#progress-container').show();
+                $('#progress-bar').css('width', percentComplete + '%');
+              }
+            }, false);
+            return xhr;
+          },
+          beforeSend: function() {
+            $('#progress-container').show();
+            $('#progress-bar').css('width', '0%');
+            $('#result').html('');
+          },
+          success: function(response) {
+            response = JSON.parse(response);
+            if (response.filePath) {
+              uploadedFilePath = response.filePath;
+              $('#result').html('<p>File uploaded and renamed successfully!');
+            } else {
+              $('#result').html('<p>Error: ' + response.message + '</p>');
+            }
+            $('#progress-container').hide();
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            $('#result').html('<p>Error: ' + errorThrown + '</p>');
+            $('#progress-container').hide();
+          }
+        });
+      }
     });
   });
 </script>
