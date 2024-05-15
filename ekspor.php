@@ -53,9 +53,9 @@ th {
     $daritanggal = ($_POST['daritanggal']);
  $sampaitanggal = ($_POST['sampaitanggal']);
  ?>
-<p align="center">DATA TRANSAKSI PEMBAYARAN SPP </p>
-<p align="center">SMK MAHARDHIKA</p>
-<p align="center">DARI TANGGAL <?php echo $daritanggal;?> SAMPAI TANGGAL <?php echo $sampaitanggal;?></p>
+<p align="center">DATA TRANSAKSI PEMBAYARAN SANTRI </p>
+<p align="center">Ponpes Ayyam WAhdi</p>
+<p align="center">Dari Tanggal <?php echo $daritanggal;?> Sampai Tanggal <?php echo $sampaitanggal;?></p>
   <table>
       <thead style='background-color: #D1C4E9;'>
         <tr>

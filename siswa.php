@@ -55,7 +55,7 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                         <th>ALAMAT</th>
                         <th>NO TELP</th>
                         <th>JENIS KELAMIN</th>
-                        <th>ID SPP</th>
+                        <th>TAHUN MASUK</th>
                         <th>ACTION</th>
                       </tr>
                     </thead>

@@ -49,7 +49,6 @@
                 <a href="dashboard.php" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
               </li>
               <li class="menu-header">Data</li>
-              <li><a class="nav-link" href="spp.php"><i class="fas fa-database"></i> <span>DATA SPP</span></a></li>
               <li><a class="nav-link" href="kelas.php"><i class="fas fa-database"></i> <span>DATA KELAS</span></a></li>
               <li class="menu-header">Personal</li>
               <li><a class="nav-link" href="petugas.php"><i class="fas fa-user-edit"></i> <span>PETUGAS</span></a></li>
