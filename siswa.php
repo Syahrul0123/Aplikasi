@@ -1,23 +1,19 @@
-<?php
-include('koneksi.php'); //agar index terhubung dengan database, maka koneksi sebagai penghubung harus di include
-
-?>
 <!DOCTYPE html>
 <html>
 
 <head>
   <title>DATA SISWA</title>
-
 </head>
 
 <body>
 
   <?php
-
+  // Include header, sidebar, and footer
   include('tampilan/header.php');
   include('tampilan/sidebar.php');
   include('tampilan/footer.php');
   ?>
+
   <!-- Main Content -->
   <div class="main-content bg-primary">
     <section class="section">
@@ -34,10 +30,11 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
             <div class="card-header">
               <h4>LIST SISWA</h4>
               <div class="card-header-form">
-                <form>
+                <form class="form-inline">
                   <div class="input-group-btn">
-                    <a href="tambah_siswa.php" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search">
                   </div>
+                  <a href="tambah_siswa.php" class="btn btn-primary"><i class="fas fa-plus"></i></a>
                 </form>
               </div>
             </div>
@@ -59,55 +56,91 @@ include('koneksi.php'); //agar index terhubung dengan database, maka koneksi seb
                         <th>ACTION</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <?php
-                      // jalankan query untuk menampilkan semua data diurutkan berdasarkan id
-                      // $query = "SELECT * FROM siswa,kelas,spp where siswa.id_kelas=kelas.id_kelas AND siswa.id_spp=spp.id_spp ORDER BY nisn ASC";
-                      $query = "SELECT * FROM siswa,kelas where siswa.id_kelas=kelas.id_kelas ORDER BY nisn ASC";
-                      $result = mysqli_query($koneksi, $query);
-                      //mengecek apakah ada error ketika menjalankan query
-                      if (!$result) {
-                        die("Query Error: " . mysqli_errno($koneksi) .
-                          " - " . mysqli_error($koneksi));
-                      }
-
-                      //buat perulangan untuk element tabel dari data mahasiswa
-                      $no = 1; //variabel untuk membuat nomor urut
-                      // hasil query akan disimpan dalam variabel $data dalam bentuk array
-                      // kemudian dicetak dengan perulangan while
-                      while ($row = mysqli_fetch_assoc($result)) {
-                      ?>
-                        <tr>
-                          <td><?php echo $no; ?></td>
-                          <td><?php echo $row['nisn']; ?></td>
-                          <td><?php echo $row['nis']; ?></td>
-                          <td><?php echo $row['nama']; ?></td>
-                          <td><?php echo $row['id_kelas']; ?></td>
-                          <td><?php echo $row['alamat']; ?></td>
-                          <td><?php echo $row['no_telp']; ?></td>
-                          <td><?php echo $row['jenis_kelamin']; ?></td>
-                          <td><?php echo $row['tahun']; ?></td>
-                          <td>
-                            <a href="edit_siswa.php?id=<?php echo $row['nisn']; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                            <a href="proses_hapussiswa.php?id=<?php echo $row['nisn']; ?>" class="btn btn-danger" onClick="return confirm('Anda yakin akan menghapus data ini?')"><i class="fas fa-trash"></i></a>
-                          </td>
-                        </tr>
-                      <?php
-                        $no++; //untuk nomor urut terus bertambah 1
-                      }
-                      ?>
+                    <tbody id="tableBody">
+                      <!-- Table rows will be filled dynamically via AJAX -->
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
+            <div class="card-body">
+              <nav aria-label="Page navigation" class="pagination-container md-2">
+            </div>
+            </nav>
           </div>
         </div>
       </div>
+    </section>
   </div>
-  </div>
-  </section>
-  </div>
+
+  <script>
+    $(document).ready(function() {
+      // Function to generate pagination links
+      function generatePagination(totalPages, currentPage) {
+        var paginationContainer = $('.pagination-container');
+        paginationContainer.empty(); // Clear previous pagination links
+
+        var ul = $('<ul class="pagination"></ul>');
+
+        // Add "Previous" link
+        if (currentPage > 1) {
+          ul.append('<li class="page-item"><a class="page-link" href="#" data-page="' + (currentPage - 1) + '">Previous</a></li>');
+        }
+
+        // Add individual page links
+        for (var i = 1; i <= totalPages; i++) {
+          ul.append('<li class="page-item ' + (currentPage === i ? 'active' : '') + '"><a class="page-link" href="#" data-page="' + i + '">' + i + '</a></li>');
+        }
+
+        // Add "Next" link
+        if (currentPage < totalPages) {
+          ul.append('<li class="page-item"><a class="page-link" href="#" data-page="' + (currentPage + 1) + '">Next</a></li>');
+        }
+
+        paginationContainer.append(ul);
+
+        // Attach event listener for page links
+        paginationContainer.find('.page-link').click(function(e) {
+          e.preventDefault();
+          var page = parseInt($(this).attr('data-page'));
+          var searchQuery = $('#searchInput').val(); // Get search query
+          fetchData(page, searchQuery); // Update content based on the clicked page and search query
+        });
+      }
+
+      // Function to fetch data based on page number and search query
+      function fetchData(page, searchQuery = '') {
+        $.ajax({
+          url: 'fetch_siswa.php', // URL to fetch data from
+          type: 'GET',
+          data: {
+            page: page,
+            search: searchQuery // Pass search query to the backend
+          },
+          dataType: 'json', // Expect JSON response
+          success: function(response) {
+            // Update table body with fetched data
+            $('#tableBody').html(response.html);
+
+            // Generate pagination links based on total pages
+            generatePagination(response.totalPages, page);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error fetching data:', errorThrown);
+          }
+        });
+      }
+
+      // Example: Initial setup with page 1
+      fetchData(1);
+
+      // Event listener for search input
+      $('#searchInput').on('keyup', function() {
+        var searchQuery = $(this).val(); // Get search query
+        fetchData(1, searchQuery); // Update content with search query and reset to page 1
+      });
+    });
+  </script>
 </body>
 
 </html>
